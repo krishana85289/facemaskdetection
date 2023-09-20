@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Face Mask Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <!-- Add your main HTML styles and scripts here -->
+</head>
+<body>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const startCameraButton = document.getElementById("glow-on-hover");
+            const cameraFeed = document.getElementById("cameraFeed");
+
+            startCameraButton.addEventListener("click", function () {
+                cameraFeed.style.display = "block";
+                startCameraButton.style.display = "none";
+                window.location.href = "/video"; // Redirect to /video
+            });
+
+            function startCameraStream() {
+                const videoElement = document.createElement("video");
+                videoElement.autoplay = true;
+                cameraFeed.appendChild(videoElement);
+
+                fetch("/video")
+                    .then((response) => response.body)
+                    .then((body) => {
+                        const reader = body.getReader();
+                        return new ReadableStream({
+                            start(controller) {
+                                function read() {
+                                    return reader.read().then(({ done, value }) => {
+                                        if (done) {
+                                            controller.close();
+                                            return;
+                                        }
+                                        controller.enqueue(value);
+                                        return read();
+                                    });
+                                }
+                                return read();
+                            },
+                        });
+                    })
+                    .then((stream) => {
+                        videoElement.srcObject = stream;
+                    });
+            }
+
+            // Call the function to start camera stream
+            startCameraStream();
+        });
+    </script>
+</body>
+</html>

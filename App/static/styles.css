@@ -1,0 +1,112 @@
+body {
+    background-image: url('https://img.freepik.com/free-photo/ai-chip-intelligence-technology-deep-learning_53876-143122.jpg?w=740&t=st=1694717487~exp=1694718087~hmac=40e5246af29141637072976a6af53cba35cb94eb84507b1e9dbc8f10ec8f067c');
+}
+.video-background {
+    background-image: url('https://img.freepik.com/free-photo/ai-chip-intelligence-technology-deep-learning_53876-143122.jpg?w=740&t=st=1694717487~exp=1694718087~hmac=40e5246af29141637072976a6af53cba35cb94eb84507b1e9dbc8f10ec8f067c');
+    background-size: cover; /* Adjust as needed */
+    background-repeat: no-repeat; /* Adjust as needed */
+    background-position: center; /* Adjust as needed */
+}
+body {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.center-text {
+    font-size: 24px; /* Adjust the font size as needed */
+}
+
+.glow-on-hover {
+    margin-top: 20px; /* Adjust the margin as needed to separate the text and button */
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.glow-on-hover {
+    width: 100%;
+    height: auto;
+    padding: 15px;
+    max-width: 220px;
+    max-height: 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover:active {
+    color: #000
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+@media screen and (max-width: 500px)  {
+    h1 {
+        font-size: 60px;
+    }
+    #glow-on-hover.glow-on-hover {
+        width: 400px !important;
+        height: 50px !important;
+    }
+}
